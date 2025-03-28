@@ -58,4 +58,50 @@ function checkLifeStage() {
 
 // Function to Update Life Stage
 function updateLifeStage() {
-    const lifeStageElement = document
+    const lifeStageElement = document.getElementById('life-stage');
+    const trexImage = document.getElementById('trex-image');
+
+    lifeStageElement.textContent = lifeStage === 1 ? "New Egg" : `Life Stage ${lifeStage}`;
+    trexImage.src = `static/images/stage${lifeStage}.png`; // Update the image path
+}
+
+// Function to Update Countdown Timer
+function updateCountdownTimer() {
+    const timerElement = document.getElementById('countdown-timer');
+    const minutes = Math.floor(countdownToDeath / 60);
+    const seconds = countdownToDeath % 60;
+
+    timerElement.textContent = `Time Left Until T.rex Death: ${minutes}m ${seconds.toString().padStart(2, '0')}s`;
+}
+
+// Countdown Timer Logic
+setInterval(() => {
+    countdownToDeath--;
+    updateCountdownTimer();
+
+    if (countdownToDeath <= 0 && currentPoints < deathThreshold) {
+        document.getElementById('status').textContent = "Dead";
+        alert("The T.rex has died! 😢");
+    }
+}, 1000);
+
+// Real-Time WebSocket Connection
+const eventSocket = new WebSocket("wss://t-rex-widget-public.onrender.com/"); // Updated WebSocket URL for production
+
+eventSocket.onopen = function () {
+    console.log("WebSocket connection established.");
+};
+
+eventSocket.onmessage = function (event) {
+    const eventData = JSON.parse(event.data);
+    console.log(`Received event: ${eventData.event}, Data:`, eventData.data);
+    updatePoints(eventData.event, eventData.count || 1); // Use eventData.count if available, otherwise default to 1
+};
+
+eventSocket.onerror = function (error) {
+    console.error("WebSocket error:", error);
+};
+
+eventSocket.onclose = function () {
+    console.log("WebSocket connection closed.");
+};
