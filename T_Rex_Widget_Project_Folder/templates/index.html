@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T. rex Widget</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- T. rex Widget -->
+    <div id="trex-widget">
+        <img id="trex-image" src="{{ url_for('static', filename='images/stage1.png') }}" alt="T. rex">
+        <p>Life Stage: <span id="life-stage">1</span></p>
+        <p>Points: <span id="points">0</span></p>
+        <p>Status: <span id="status">Alive</span></p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+        <div id="progress-bar-text">Progress: 0%</div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="countdown-timer">Time Left: 60m 0s</div>
+
+    <!-- Evolution Points -->
+    <div class="status-bar">Evolution Points: <span id="evolution-points">0</span></div>
+
+    <!-- Tikfinity Goals -->
+    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=likes"></iframe>
+    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=shares"></iframe>
+    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=follows"></iframe>
+    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=coins"></iframe>
+    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=subs"></iframe>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
