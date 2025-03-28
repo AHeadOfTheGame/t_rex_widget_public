@@ -1,11 +1,12 @@
 import os  # Import os to access environment variables
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
+# Initialize Flask app
 app = Flask(__name__)
 
 # Fetch the secret key from the environment variable
-app.secret_key = os.getenv('Flask_Secret_Key')  # Securely fetch Flask_Secret_Key
+app.secret_key = os.getenv('FLASK_SECRET_KEY')  # Securely fetch FLASK_SECRET_KEY
 CORS(app)  # Allow frontend-backend communication
 
 # Initial T. rex data
@@ -15,12 +16,17 @@ trex_data = {
     "alive": True
 }
 
-# Endpoint to get T. rex data
+# Welcome route (renders the frontend)
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# API endpoint to get T. rex data
 @app.route('/get_trex_data', methods=['GET'])
 def get_trex_data():
     return jsonify(trex_data)
 
-# Endpoint to update points
+# API endpoint to update points
 @app.route('/update_points', methods=['POST'])
 def update_points():
     data = request.get_json()
@@ -50,17 +56,3 @@ def update_points():
 # Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
-@app.route('/')
-def home():
-    return "Welcome to the T. rex Widget!"
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
