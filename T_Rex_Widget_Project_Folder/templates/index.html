@@ -10,15 +10,15 @@
 <body>
     <!-- T. rex Widget -->
     <div id="trex-widget">
-        <img id="trex-image" src="{{ url_for('static', filename='images/stage1.png') }}" alt="T. rex">
+        <img id="trex-image" src="{{ url_for('static', filename='images/stage1.png') }}" alt="Image of a T. rex at life stage 1">
         <p>Life Stage: <span id="life-stage">1</span></p>
         <p>Points: <span id="points">0</span></p>
         <p>Status: <span id="status">Alive</span></p>
     </div>
 
     <!-- Progress Bar -->
-    <div id="progress-bar-container">
-        <div id="progress-bar"></div>
+    <div id="progress-bar-container" aria-label="Progress Bar">
+        <div id="progress-bar" style="width: 0%;"></div>
         <div id="progress-bar-text">Progress: 0%</div>
     </div>
 
@@ -29,11 +29,13 @@
     <div class="status-bar">Evolution Points: <span id="evolution-points">0</span></div>
 
     <!-- Tikfinity Goals -->
-    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=likes"></iframe>
-    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=shares"></iframe>
-    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=follows"></iframe>
-    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=coins"></iframe>
-    <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=subs"></iframe>
+    <div id="tikfinity-widgets">
+        <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=likes" title="Tikfinity Likes Goal"></iframe>
+        <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=shares" title="Tikfinity Shares Goal"></iframe>
+        <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=follows" title="Tikfinity Follows Goal"></iframe>
+        <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=coins" title="Tikfinity Coins Goal"></iframe>
+        <iframe src="https://tikfinity.zerody.one/widget/goal?cid=1198829&metric=subs" title="Tikfinity Subs Goal"></iframe>
+    </div>
 
     <!-- Link to external JavaScript -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
